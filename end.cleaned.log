@@ -1,0 +1,271 @@
+nohup: 忽略输入
+/home/sword/anaconda3/envs/ab/lib/python3.10/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+[OK] Matplotlib 中文字体已设置为: Noto Sans CJK JP
+Using Device: cuda
+Save metric: dev macro_f1
+Early stopping: True (patience=2)
+AMP enabled: True (only works on CUDA)
+
+==========================================================================================
+Running experiment: baseline
+  warmup_ratio=0.0, freeze_embedding=False, freeze_layers=0, label_smoothing=0.0, rdrop_alpha=0.0
+==========================================================================================
+Loading data from ./data/THUCNews-txt/train.txt...
+Parsing:   0%|          | 0/180000 [00:00<?, ?it/s]Parsing: 100%|██████████| 180000/180000 [00:00<00:00, 1929657.71it/s]
+  -> 成功读取: 180000 条数据
+Loading data from ./data/THUCNews-txt/dev.txt...
+Parsing:   0%|          | 0/10000 [00:00<?, ?it/s]Parsing: 100%|██████████| 10000/10000 [00:00<00:00, 2135049.12it/s]
+  -> 成功读取: 10000 条数据
+Loading data from ./data/THUCNews-txt/test.txt...
+Parsing:   0%|          | 0/10000 [00:00<?, ?it/s]Parsing: 100%|██████████| 10000/10000 [00:00<00:00, 2072284.58it/s]
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at bert-base-chinese and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/home/sword/passion/自然语言项目/bert_thucnews_strategy_ablation.py:468: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=(use_amp and device.type == "cuda"))
+  -> 成功读取: 10000 条数据
+[INFO] Trainable params: 102275338/102275338 (100.00%)
+
+======== Epoch 1/4 ========
+  with torch.cuda.amp.autocast(enabled=(use_amp and device.type == "cuda")):
+[OK] 保存 best checkpoint: ./outputs_bert_strategy/baseline/best_model.pt | best_macro_f1=0.9263 (epoch 1)
+
+======== Epoch 2/4 ========
+  with torch.cuda.amp.autocast(enabled=(use_amp and device.type == "cuda")):
+[OK] 保存 best checkpoint: ./outputs_bert_strategy/baseline/best_model.pt | best_macro_f1=0.9380 (epoch 2)
+
+======== Epoch 3/4 ========
+  with torch.cuda.amp.autocast(enabled=(use_amp and device.type == "cuda")):
+[OK] 保存 best checkpoint: ./outputs_bert_strategy/baseline/best_model.pt | best_macro_f1=0.9411 (epoch 3)
+
+======== Epoch 4/4 ========
+  with torch.cuda.amp.autocast(enabled=(use_amp and device.type == "cuda")):
+[OK] 保存 best checkpoint: ./outputs_bert_strategy/baseline/best_model.pt | best_macro_f1=0.9422 (epoch 4)
+[OK] 训练曲线已保存: ./outputs_bert_strategy/baseline/training_curves.png
+========== Final Evaluation on Test Set ==========
+Best epoch (by dev macro_f1): 4
+Dev best macro_f1: 0.9422
+Test Accuracy : 0.9448
+Test Macro-F1 : 0.9448
+
+              precision    recall  f1-score   support
+
+          财经     0.9352    0.9380    0.9366      1000
+          房产     0.9550    0.9540    0.9545      1000
+          股票     0.9180    0.9070    0.9125      1000
+          教育     0.9640    0.9640    0.9640      1000
+          科技     0.9037    0.9100    0.9068      1000
+          社会     0.9286    0.9500    0.9392      1000
+          时政     0.9339    0.9330    0.9335      1000
+          体育     0.9869    0.9810    0.9840      1000
+          游戏     0.9701    0.9420    0.9559      1000
+          娱乐     0.9537    0.9690    0.9613      1000
+
+    accuracy                         0.9448     10000
+   macro avg     0.9449    0.9448    0.9448     10000
+weighted avg     0.9449    0.9448    0.9448     10000
+
+[OK] 混淆矩阵已保存: ./outputs_bert_strategy/baseline/confusion_matrix.png
+[OK] 混淆矩阵已保存: ./outputs_bert_strategy/baseline/confusion_matrix_norm.png
+[OK] Top误判样本已导出: ./outputs_bert_strategy/baseline/top_misclassified.csv  (top_k=50)
+[OK] 本次实验输出目录: ./outputs_bert_strategy/baseline
+
+==========================================================================================
+Running experiment: warmup_0.1
+  warmup_ratio=0.1, freeze_embedding=False, freeze_layers=0, label_smoothing=0.0, rdrop_alpha=0.0
+==========================================================================================
+Loading data from ./data/THUCNews-txt/train.txt...
+Parsing:   0%|          | 0/180000 [00:00<?, ?it/s]Parsing: 100%|██████████| 180000/180000 [00:00<00:00, 1947045.60it/s]
+  -> 成功读取: 180000 条数据
+Loading data from ./data/THUCNews-txt/dev.txt...
+Parsing:   0%|          | 0/10000 [00:00<?, ?it/s]Parsing: 100%|██████████| 10000/10000 [00:00<00:00, 2112680.20it/s]
+  -> 成功读取: 10000 条数据
+Loading data from ./data/THUCNews-txt/test.txt...
+Parsing:   0%|          | 0/10000 [00:00<?, ?it/s]Parsing: 100%|██████████| 10000/10000 [00:00<00:00, 2083712.06it/s]
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at bert-base-chinese and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/home/sword/passion/自然语言项目/bert_thucnews_strategy_ablation.py:468: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=(use_amp and device.type == "cuda"))
+  -> 成功读取: 10000 条数据
+[INFO] Trainable params: 102275338/102275338 (100.00%)
+
+======== Epoch 1/4 ========
+  with torch.cuda.amp.autocast(enabled=(use_amp and device.type == "cuda")):
+[OK] 保存 best checkpoint: ./outputs_bert_strategy/warmup_0.1/best_model.pt | best_macro_f1=0.9262 (epoch 1)
+
+======== Epoch 2/4 ========
+  with torch.cuda.amp.autocast(enabled=(use_amp and device.type == "cuda")):
+[OK] 保存 best checkpoint: ./outputs_bert_strategy/warmup_0.1/best_model.pt | best_macro_f1=0.9368 (epoch 2)
+
+======== Epoch 3/4 ========
+  with torch.cuda.amp.autocast(enabled=(use_amp and device.type == "cuda")):
+[OK] 保存 best checkpoint: ./outputs_bert_strategy/warmup_0.1/best_model.pt | best_macro_f1=0.9403 (epoch 3)
+
+======== Epoch 4/4 ========
+  with torch.cuda.amp.autocast(enabled=(use_amp and device.type == "cuda")):
+[OK] 保存 best checkpoint: ./outputs_bert_strategy/warmup_0.1/best_model.pt | best_macro_f1=0.9425 (epoch 4)
+[OK] 训练曲线已保存: ./outputs_bert_strategy/warmup_0.1/training_curves.png
+========== Final Evaluation on Test Set ==========
+Best epoch (by dev macro_f1): 4
+Dev best macro_f1: 0.9425
+Test Accuracy : 0.9458
+Test Macro-F1 : 0.9458
+
+              precision    recall  f1-score   support
+
+          财经     0.9369    0.9210    0.9289      1000
+          房产     0.9503    0.9560    0.9531      1000
+          股票     0.9088    0.9070    0.9079      1000
+          教育     0.9737    0.9640    0.9688      1000
+          科技     0.9017    0.9170    0.9093      1000
+          社会     0.9325    0.9530    0.9426      1000
+          时政     0.9358    0.9330    0.9344      1000
+          体育     0.9880    0.9870    0.9875      1000
+          游戏     0.9743    0.9460    0.9599      1000
+          娱乐     0.9577    0.9740    0.9658      1000
+
+    accuracy                         0.9458     10000
+   macro avg     0.9460    0.9458    0.9458     10000
+weighted avg     0.9460    0.9458    0.9458     10000
+
+[OK] 混淆矩阵已保存: ./outputs_bert_strategy/warmup_0.1/confusion_matrix.png
+[OK] 混淆矩阵已保存: ./outputs_bert_strategy/warmup_0.1/confusion_matrix_norm.png
+[OK] Top误判样本已导出: ./outputs_bert_strategy/warmup_0.1/top_misclassified.csv  (top_k=50)
+[OK] 本次实验输出目录: ./outputs_bert_strategy/warmup_0.1
+
+==========================================================================================
+Running experiment: freeze_emb+6layers
+  warmup_ratio=0.1, freeze_embedding=True, freeze_layers=6, label_smoothing=0.0, rdrop_alpha=0.0
+==========================================================================================
+Loading data from ./data/THUCNews-txt/train.txt...
+Parsing:   0%|          | 0/180000 [00:00<?, ?it/s]Parsing: 100%|██████████| 180000/180000 [00:00<00:00, 1872108.91it/s]
+  -> 成功读取: 180000 条数据
+Loading data from ./data/THUCNews-txt/dev.txt...
+Parsing:   0%|          | 0/10000 [00:00<?, ?it/s]Parsing: 100%|██████████| 10000/10000 [00:00<00:00, 2058049.07it/s]
+  -> 成功读取: 10000 条数据
+Loading data from ./data/THUCNews-txt/test.txt...
+Parsing:   0%|          | 0/10000 [00:00<?, ?it/s]Parsing: 100%|██████████| 10000/10000 [00:00<00:00, 1951292.86it/s]
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at bert-base-chinese and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/home/sword/passion/自然语言项目/bert_thucnews_strategy_ablation.py:468: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=(use_amp and device.type == "cuda"))
+  -> 成功读取: 10000 条数据
+[INFO] Trainable params: 43125514/102275338 (42.17%)
+
+======== Epoch 1/4 ========
+  with torch.cuda.amp.autocast(enabled=(use_amp and device.type == "cuda")):
+[OK] 保存 best checkpoint: ./outputs_bert_strategy/freeze_emb+6layers/best_model.pt | best_macro_f1=0.9167 (epoch 1)
+
+======== Epoch 2/4 ========
+  with torch.cuda.amp.autocast(enabled=(use_amp and device.type == "cuda")):
+[OK] 保存 best checkpoint: ./outputs_bert_strategy/freeze_emb+6layers/best_model.pt | best_macro_f1=0.9313 (epoch 2)
+
+======== Epoch 3/4 ========
+  with torch.cuda.amp.autocast(enabled=(use_amp and device.type == "cuda")):
+[OK] 保存 best checkpoint: ./outputs_bert_strategy/freeze_emb+6layers/best_model.pt | best_macro_f1=0.9330 (epoch 3)
+
+======== Epoch 4/4 ========
+  with torch.cuda.amp.autocast(enabled=(use_amp and device.type == "cuda")):
+[OK] 保存 best checkpoint: ./outputs_bert_strategy/freeze_emb+6layers/best_model.pt | best_macro_f1=0.9375 (epoch 4)
+[OK] 训练曲线已保存: ./outputs_bert_strategy/freeze_emb+6layers/training_curves.png
+========== Final Evaluation on Test Set ==========
+Best epoch (by dev macro_f1): 4
+Dev best macro_f1: 0.9375
+Test Accuracy : 0.9418
+Test Macro-F1 : 0.9418
+
+              precision    recall  f1-score   support
+
+          财经     0.9295    0.9360    0.9327      1000
+          房产     0.9540    0.9530    0.9535      1000
+          股票     0.9123    0.8950    0.9036      1000
+          教育     0.9737    0.9610    0.9673      1000
+          科技     0.9112    0.9030    0.9071      1000
+          社会     0.9280    0.9540    0.9408      1000
+          时政     0.9266    0.9340    0.9303      1000
+          体育     0.9760    0.9780    0.9770      1000
+          游戏     0.9611    0.9390    0.9499      1000
+          娱乐     0.9461    0.9650    0.9554      1000
+
+    accuracy                         0.9418     10000
+   macro avg     0.9418    0.9418    0.9418     10000
+weighted avg     0.9418    0.9418    0.9418     10000
+
+[OK] 混淆矩阵已保存: ./outputs_bert_strategy/freeze_emb+6layers/confusion_matrix.png
+[OK] 混淆矩阵已保存: ./outputs_bert_strategy/freeze_emb+6layers/confusion_matrix_norm.png
+[OK] Top误判样本已导出: ./outputs_bert_strategy/freeze_emb+6layers/top_misclassified.csv  (top_k=50)
+[OK] 本次实验输出目录: ./outputs_bert_strategy/freeze_emb+6layers
+
+==========================================================================================
+Running experiment: label_smoothing_0.1
+  warmup_ratio=0.1, freeze_embedding=False, freeze_layers=0, label_smoothing=0.1, rdrop_alpha=0.0
+==========================================================================================
+Loading data from ./data/THUCNews-txt/train.txt...
+Parsing:   0%|          | 0/180000 [00:00<?, ?it/s]Parsing: 100%|██████████| 180000/180000 [00:00<00:00, 1849000.70it/s]
+  -> 成功读取: 180000 条数据
+Loading data from ./data/THUCNews-txt/dev.txt...
+Parsing:   0%|          | 0/10000 [00:00<?, ?it/s]Parsing: 100%|██████████| 10000/10000 [00:00<00:00, 1989235.95it/s]
+  -> 成功读取: 10000 条数据
+Loading data from ./data/THUCNews-txt/test.txt...
+Parsing:   0%|          | 0/10000 [00:00<?, ?it/s]Parsing: 100%|██████████| 10000/10000 [00:00<00:00, 1990179.83it/s]
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at bert-base-chinese and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/home/sword/passion/自然语言项目/bert_thucnews_strategy_ablation.py:468: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=(use_amp and device.type == "cuda"))
+  -> 成功读取: 10000 条数据
+[INFO] Trainable params: 102275338/102275338 (100.00%)
+
+======== Epoch 1/4 ========
+  with torch.cuda.amp.autocast(enabled=(use_amp and device.type == "cuda")):
+[OK] 保存 best checkpoint: ./outputs_bert_strategy/label_smoothing_0.1/best_model.pt | best_macro_f1=0.9307 (epoch 1)
+
+======== Epoch 2/4 ========
+  with torch.cuda.amp.autocast(enabled=(use_amp and device.type == "cuda")):
+[OK] 保存 best checkpoint: ./outputs_bert_strategy/label_smoothing_0.1/best_model.pt | best_macro_f1=0.9386 (epoch 2)
+
+======== Epoch 3/4 ========
+  with torch.cuda.amp.autocast(enabled=(use_amp and device.type == "cuda")):
+[OK] 保存 best checkpoint: ./outputs_bert_strategy/label_smoothing_0.1/best_model.pt | best_macro_f1=0.9417 (epoch 3)
+
+======== Epoch 4/4 ========
+  with torch.cuda.amp.autocast(enabled=(use_amp and device.type == "cuda")):
+[OK] 训练曲线已保存: ./outputs_bert_strategy/label_smoothing_0.1/training_curves.png
+========== Final Evaluation on Test Set ==========
+Best epoch (by dev macro_f1): 3
+Dev best macro_f1: 0.9417
+Test Accuracy : 0.9432
+Test Macro-F1 : 0.9432
+
+              precision    recall  f1-score   support
+
+          财经     0.9497    0.9060    0.9273      1000
+          房产     0.9440    0.9600    0.9519      1000
+          股票     0.8927    0.9070    0.8998      1000
+          教育     0.9737    0.9640    0.9688      1000
+          科技     0.9116    0.9070    0.9093      1000
+          社会     0.9449    0.9440    0.9445      1000
+          时政     0.9274    0.9330    0.9302      1000
+          体育     0.9939    0.9730    0.9833      1000
+          游戏     0.9572    0.9620    0.9596      1000
+          娱乐     0.9394    0.9760    0.9573      1000
+
+    accuracy                         0.9432     10000
+   macro avg     0.9434    0.9432    0.9432     10000
+weighted avg     0.9434    0.9432    0.9432     10000
+
+[OK] 混淆矩阵已保存: ./outputs_bert_strategy/label_smoothing_0.1/confusion_matrix.png
+[OK] 混淆矩阵已保存: ./outputs_bert_strategy/label_smoothing_0.1/confusion_matrix_norm.png
+[OK] Top误判样本已导出: ./outputs_bert_strategy/label_smoothing_0.1/top_misclassified.csv  (top_k=50)
+[OK] 本次实验输出目录: ./outputs_bert_strategy/label_smoothing_0.1
+
+================ Strategy Ablation Summary ================
+
+           exp_name  warmup_ratio  freeze_embedding  freeze_layers  label_smoothing  rdrop_alpha  best_epoch dev_best_metric  dev_best_value  test_acc  test_macro_f1  train_time_sec  test_time_sec
+         warmup_0.1           0.1             False              0              0.0          0.0           4        macro_f1        0.942470    0.9458       0.945830     1697.293154      17.068510
+           baseline           0.0             False              0              0.0          0.0           4        macro_f1        0.942237    0.9448       0.944816     1690.826256      17.036450
+label_smoothing_0.1           0.1             False              0              0.1          0.0           3        macro_f1        0.941714    0.9432       0.943210     1702.599849      17.099048
+ freeze_emb+6layers           0.1              True              6              0.0          0.0           4        macro_f1        0.937508    0.9418       0.941767     1098.824826      17.260223
+
+[OK] 策略消融汇总表已保存: ./outputs_bert_strategy/strategy_ablation_summary.csv
+
+建议写作：对比 warmup / 冻结 / label smoothing 对 Macro-F1 的影响，并结合混淆矩阵与 Top 误判样本做定性分析。
